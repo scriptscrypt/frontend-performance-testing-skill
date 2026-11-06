@@ -1,0 +1,36 @@
+{
+  "baseUrl": "http://localhost:3100",
+  "routes": ["/", "/pricing", "/dashboard"],
+  "profiles": ["desktop", "mobile"],
+  "modes": ["cold", "warm"],
+  "runs": 3,
+  "settleMs": 10000,
+  "apiPattern": "/api/",
+
+  "auth": {
+    "storageState": ".auth/state.json",
+    "loginUrl": "http://localhost:3000/login",
+    "cookie": "session"
+  },
+
+  "marks": {
+    "shell": { "selector": "header" },
+    "headline": { "selector": "h1", "text": "\\S" },
+    "price": { "selector": "[data-testid=price]", "text": "\\$\\s?[0-9]" },
+    "cta": { "selector": "button", "text": "^(buy|get started)\\b" },
+    "chart": { "selector": "canvas", "minCount": 2, "onRoutes": ["^/dashboard"] }
+  },
+
+  "budgets": {
+    "ceilingMs": 6000,
+    "metrics": {
+      "ttfb": { "*": 200 },
+      "fcp": { "desktop.warm": 150, "desktop.cold": 300, "mobile.cold": 1000 },
+      "headline": { "desktop.*": 500, "mobile.cold": 1500 },
+      "price": { "desktop.warm": 500, "desktop.cold": 1000, "mobile.cold": 2500 },
+      "cta": { "desktop.*": 1000, "mobile.cold": 2500 },
+      "jsKb": { "*.cold": 630 },
+      "cls": { "*": 0.1 }
+    }
+  }
+}

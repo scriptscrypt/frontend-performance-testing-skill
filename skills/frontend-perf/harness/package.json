@@ -1,0 +1,25 @@
+{
+  "name": "frontend-perf-harness",
+  "private": true,
+  "type": "module",
+  "description": "Filmstrip load-time harness: Playwright + Chromium, marks, budgets, a 6 s ceiling and interleaved A/B. Standalone: npm install here, not in your workspace.",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "setup": "npm install && npx playwright install chromium",
+    "doctor": "node doctor.mjs",
+    "login": "node login.mjs",
+    "probe": "node probe.mjs",
+    "measure": "node measure.mjs",
+    "report": "node report.mjs",
+    "ab": "node ab.mjs",
+    "waterfall": "node waterfall.mjs",
+    "requests": "node requests.mjs",
+    "initiators": "node initiators.mjs"
+  },
+  "dependencies": {
+    "playwright": "^1.64.0",
+    "sharp": "^0.34.0"
+  }
+}

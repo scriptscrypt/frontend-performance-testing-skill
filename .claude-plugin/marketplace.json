@@ -1,0 +1,15 @@
+{
+  "name": "frontend-performance-testing-skill",
+  "description": "A Claude Code skill that runs your frontend performance tests end to end.",
+  "owner": {
+    "name": "Srinivasa"
+  },
+  "plugins": [
+    {
+      "name": "frontend-perf",
+      "description": "End-to-end frontend load performance testing with filmstrips, budgets, a 6 s ceiling and interleaved A/B.",
+      "source": "./",
+      "category": "development"
+    }
+  ]
+}

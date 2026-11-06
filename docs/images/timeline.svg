@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="330" viewBox="0 0 920 330" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+  <rect width="920" height="330" rx="12" fill="#0b0f17"/>
+  <text x="24" y="34" font-size="15" fill="#e5e7eb" font-family="ui-sans-serif, system-ui, sans-serif" font-weight="600">When the whole first view became visible (demo shop, median of 3 cold loads)</text>
+
+  <!-- axis: 0..7000 ms over x = 170..870 (0.1 px/ms) -->
+  <g stroke="#1f2937">
+    <line x1="170" y1="60" x2="170" y2="270"/><line x1="270" y1="60" x2="270" y2="270"/><line x1="370" y1="60" x2="370" y2="270"/>
+    <line x1="470" y1="60" x2="470" y2="270"/><line x1="570" y1="60" x2="570" y2="270"/><line x1="670" y1="60" x2="670" y2="270"/>
+    <line x1="870" y1="60" x2="870" y2="270"/>
+  </g>
+  <g font-size="11" fill="#9ca3af" text-anchor="middle">
+    <text x="170" y="288">0 s</text><text x="270" y="288">1 s</text><text x="370" y="288">2 s</text><text x="470" y="288">3 s</text>
+    <text x="570" y="288">4 s</text><text x="670" y="288">5 s</text><text x="870" y="288">7 s</text>
+  </g>
+
+  <!-- ceiling -->
+  <rect x="770" y="56" width="100" height="214" fill="#7f1d1d" opacity="0.35"/>
+  <line x1="770" y1="52" x2="770" y2="272" stroke="#f87171" stroke-width="2" stroke-dasharray="5 4"/>
+  <text x="770" y="288" font-size="11" fill="#f87171" text-anchor="middle" font-weight="700">6 s ceiling</text>
+
+  <!-- rows -->
+  <g font-size="12" fill="#e5e7eb">
+    <text x="24" y="84">slow · desktop</text>
+    <text x="24" y="134">slow · mobile</text>
+    <text x="24" y="184">fast · desktop</text>
+    <text x="24" y="234">fast · mobile</text>
+  </g>
+  <!-- blank screen (white-ish) then content arrives; bar = time to last mark -->
+  <rect x="170" y="70" width="425" height="20" rx="4" fill="#fbbf24"/>
+  <text x="603" y="85" font-size="12" fill="#fbbf24">4.2 s · over budget</text>
+  <rect x="170" y="120" width="679" height="20" rx="4" fill="#f87171"/>
+  <text x="182" y="135" font-size="12" fill="#0b0f17" font-weight="700">6.8 s · over the ceiling</text>
+  <rect x="170" y="170" width="3" height="20" rx="1" fill="#4ade80"/>
+  <text x="182" y="185" font-size="12" fill="#4ade80">0.03 s</text>
+  <rect x="170" y="220" width="12" height="20" rx="2" fill="#4ade80"/>
+  <text x="190" y="235" font-size="12" fill="#4ade80">0.12 s  passes everything</text>
+
+  <text x="24" y="314" font-size="11" fill="#9ca3af" font-family="ui-sans-serif, system-ui, sans-serif">Bar = slowest of FCP and every mark (headline, price, CTA, all row prices). Mobile = 4× CPU, Fast 4G. Same page, two builds.</text>
+</svg>

@@ -1,0 +1,28 @@
+{
+  "baseUrl": "http://localhost:4100",
+  "routes": ["/"],
+  "profiles": ["desktop", "mobile"],
+  "modes": ["cold"],
+  "runs": 3,
+  "settleMs": 10000,
+  "out": "runs",
+
+  "marks": {
+    "headline": { "selector": "h1" },
+    "price": { "selector": "[data-testid=price]", "text": "\\$[0-9]" },
+    "cta": { "selector": "button", "text": "^buy\\b" },
+    "rowPrices": { "selector": "[data-testid=row-price]", "text": "\\$[0-9]", "minCount": 12, "visible": false }
+  },
+
+  "budgets": {
+    "ceilingMs": 6000,
+    "metrics": {
+      "fcp": { "desktop.*": 300, "mobile.*": 1000 },
+      "headline": { "desktop.*": 500, "mobile.*": 1500 },
+      "price": { "desktop.*": 500, "mobile.*": 1500 },
+      "cta": { "desktop.*": 500, "mobile.*": 1500 },
+      "rowPrices": { "desktop.*": 1000, "mobile.*": 2500 },
+      "jsKb": { "*": 200 }
+    }
+  }
+}

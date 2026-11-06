@@ -1,0 +1,12 @@
+{
+  "name": "frontend-perf",
+  "description": "End-to-end frontend load performance testing: filmstrips, marks, desktop + throttled mobile, cold + warm, budgets, a 6 s ceiling and interleaved A/B, run by the agent.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Srinivasa"
+  },
+  "homepage": "https://github.com/scriptscrypt/frontend-performance-testing-skill",
+  "repository": "https://github.com/scriptscrypt/frontend-performance-testing-skill",
+  "license": "MIT",
+  "keywords": ["performance", "playwright", "filmstrip", "web-vitals", "lighthouse", "frontend", "testing"]
+}
