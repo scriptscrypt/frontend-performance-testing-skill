@@ -1,4 +1,8 @@
-# frontend-perf: a Claude skill for end-to-end page-load testing
+# frontend-perf: an agent skill for end-to-end page-load testing
+
+Works with **Claude Code, Codex, Cursor, Gemini CLI, GitHub Copilot** and any coding agent that can run a shell. It's
+a standard [Agent Skill](https://agentskills.io) (a `SKILL.md` with plain-Markdown references) plus a plain Node +
+Playwright harness. Nothing in it depends on one vendor.
 
 **Hand your AI agent the whole performance test.** It installs a filmstrip harness in your repo, builds and serves
 your app in production mode, works out what "loaded" means on each page, measures desktop and throttled mobile,
@@ -98,19 +102,19 @@ interleaved      A B B A A B B A A B    both sides see the same drift: the gap i
 
 ## Install
 
-**As a Claude Code plugin** (recommended, updates with the repo):
+The skill is the folder [`skills/frontend-perf`](skills/frontend-perf): `SKILL.md`, its `references/` and the
+`harness/`. Put that folder wherever your agent looks for skills.
 
-```
-/plugin marketplace add scriptscrypt/frontend-performance-testing-skill
-/plugin install frontend-perf@frontend-performance-testing-skill
-```
-
-**Or copy the skill** into your user skills (all projects) or one project:
+| Agent | Install |
+| --- | --- |
+| **Claude Code** | `/plugin marketplace add scriptscrypt/frontend-performance-testing-skill`, then `/plugin install frontend-perf@frontend-performance-testing-skill`. Or copy the folder to `~/.claude/skills/` (all projects) or `<repo>/.claude/skills/` (one repo). |
+| **Codex** | Copy the folder to `~/.codex/skills/`. |
+| **Cursor, Gemini CLI, Copilot and others** | `npx skills add scriptscrypt/frontend-performance-testing-skill`, which asks which agents to install it for. Or copy the folder to the skills directory your agent documents. |
+| **Any agent without skill support** | Clone the repo and tell the agent: *"Read `skills/frontend-perf/SKILL.md` and follow it."* To make that permanent in a project, add the same line to its `AGENTS.md`. |
 
 ```bash
 git clone https://github.com/scriptscrypt/frontend-performance-testing-skill
-cp -R frontend-performance-testing-skill/skills/frontend-perf ~/.claude/skills/            # every project
-cp -R frontend-performance-testing-skill/skills/frontend-perf <your-repo>/.claude/skills/  # one repo, shared with the team
+cp -R frontend-performance-testing-skill/skills/frontend-perf ~/.codex/skills/    # or ~/.claude/skills/, etc.
 ```
 
 Then just ask: *"Measure the load performance of /pricing and /dashboard"*, *"Why does the chart show up late on
@@ -166,7 +170,7 @@ whether it may change code or only measure.
 **2. Install the harness** into `tools/perf/` (standalone, not a workspace package) and download Chromium:
 
 ```bash
-cp -R ~/.claude/skills/frontend-perf/harness tools/perf
+cp -R <skill folder>/harness tools/perf   # e.g. ~/.codex/skills/frontend-perf/harness
 cp tools/perf/perf.config.example.json tools/perf/perf.config.json
 npm --prefix tools/perf run setup
 ```
@@ -189,10 +193,11 @@ npm --prefix tools/perf run doctor
 
 It also fails if the server looks like a dev server (Vite, webpack or Next.js dev markers in the HTML).
 
-**4. Sign in (you).** If routes need a session, the agent asks you to run this. In Claude Code, type it with `!`:
+**4. Sign in (you).** If routes need a session, the agent asks you to run this in your own terminal (in Claude
+Code you can type it in the session with a `!` prefix):
 
 ```
-! npm --prefix tools/perf run login
+npm --prefix tools/perf run login
 ```
 
 A real browser opens and you log in. The session is saved to `tools/perf/.auth/state.json`, which is gitignored and a
@@ -286,9 +291,9 @@ Full field list: [methodology.md](skills/frontend-perf/references/methodology.md
 | 2 · Fix | Change code, rebuild, re-measure | Edit files |
 | 3 · Compare builds | Baseline in a git worktree, interleaved A/B | `git worktree`, a second port |
 
-It never needs your passwords (you sign in yourself), push rights, or production access. A ready-made
-`.claude/settings.json` permission template, with the session file denied, is in
-[access.md](skills/frontend-perf/references/access.md).
+It never needs your passwords (you sign in yourself), push rights, or production access. Whatever your agent's
+approval settings look like, allow the commands above and deny reads of `tools/perf/.auth/`. A ready-made Claude Code
+template is in [access.md](skills/frontend-perf/references/access.md), with notes for other agents.
 
 ## Dependencies
 
@@ -331,7 +336,7 @@ comparisons.
 
 ```
 frontend-performance-testing-skill/
-├── .claude-plugin/              plugin + marketplace manifests
+├── .claude-plugin/              Claude Code plugin + marketplace manifests (other agents ignore it)
 ├── skills/frontend-perf/
 │   ├── SKILL.md                 the agent's playbook
 │   ├── references/              config · methodology · diagnosis · rules · frameworks · access
@@ -341,7 +346,8 @@ frontend-performance-testing-skill/
 │       └── waterfall.mjs  requests.mjs  initiators.mjs
 ├── examples/demo-shop/          slow + fast builds of one page, and its config
 ├── docs/images/                 the pictures in this README (real runs of the demo)
-└── CASE-STUDY.md                the production app this came from, with its numbers
+├── CASE-STUDY.md                the production app this came from, with its numbers
+└── AGENTS.md                    points any agent opened in this repo at the skill
 ```
 
 ## License

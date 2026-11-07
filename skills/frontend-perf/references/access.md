@@ -16,7 +16,14 @@ credential. Deny reads of it, keep it gitignored, and use a test account where y
 **Network:** the harness downloads Chromium once (`npx playwright install chromium`, ~150 MB), then talks only to
 the servers in your config. Nothing is uploaded anywhere.
 
-## Permissions template (Claude Code)
+## Permissions
+
+Whatever agent you use, the shape is the same: allow the build/serve commands and `npm --prefix tools/perf run …`,
+allow reading `tools/perf/runs/`, and deny reading `tools/perf/.auth/` and `git push`. Every harness command starts
+with `npm --prefix tools/perf run`, so one prefix rule covers them all. Map that onto your agent's approval or
+sandbox settings (Codex approval modes, Cursor's command allowlist, and so on).
+
+### Template for Claude Code
 
 Put this in the project's `.claude/settings.json` (shared) or `.claude/settings.local.json` (just you) and adjust
 the build commands to your project. Rules are prefix matches. `deny` beats `allow`.

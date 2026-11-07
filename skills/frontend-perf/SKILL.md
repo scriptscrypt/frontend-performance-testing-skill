@@ -84,11 +84,11 @@ Fix everything it marks ✗ before you measure.
 
 ### 4. Sign in (only if routes need it), done by the user
 
-Set `auth` in the config (`storageState`, `loginUrl`, `cookie`), then ask the user to run it themselves. In Claude
-Code they can type it with the `!` prefix so it runs in the session:
+Set `auth` in the config (`storageState`, `loginUrl`, `cookie`), then ask the user to run it themselves in their own
+terminal (if your agent lets the user run a command in the session, such as Claude Code's `!` prefix, say so):
 
 ```
-! npm --prefix tools/perf run login
+npm --prefix tools/perf run login
 ```
 
 A browser opens and they sign in. The session is saved when the cookie appears, or when they press Enter. Cookies are shared
