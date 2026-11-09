@@ -11,6 +11,9 @@ reads the filmstrips, finds the cause, and proves a fix with interleaved A/B run
 One promise sits underneath it all: **on a mid-range phone, a first-time visitor sees every part of the first view
 within 6 seconds.** Any run that misses it fails.
 
+Built and proven on [Suzi](https://suzi.trade), an AI trading app, where it took a phone's chart load from 7.2 s to
+under the ceiling. The numbers are in the [case study](CASE-STUDY.md).
+
 ![The same page in two builds against the 6 s ceiling](docs/images/timeline.svg)
 
 <table>
@@ -34,7 +37,7 @@ within 6 seconds.** Any run that misses it fails.
 - [Dependencies](#dependencies)
 - [CI](#ci)
 - [Limits](#limits)
-- [Case study](CASE-STUDY.md)
+- [Case study: Suzi](CASE-STUDY.md) ([suzi.trade](https://suzi.trade))
 
 ## What you get
 
